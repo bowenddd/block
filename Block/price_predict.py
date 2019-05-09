@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 from PIL import ImageTk, Image
 
 import tkinter as tk
-ave_price, origin_price_data, predicted_price = 0,0,0
-ave_price_show = None
-origin_price_data_show = None
-predicted_price_show = None
-imgLabel = None
+# ave_price, origin_price_data, predicted_price = 0,0,0
+# ave_price_show = None
+# origin_price_data_show = None
+# predicted_price_show = None
+# imgLabel = None
 def load_btc_data(url, data):
     # 获取最新80笔交易的数据
     r = requests.get(url)
@@ -48,7 +48,9 @@ def price_predict():
     predicted_price = result[0][0] *(max[1]-min[1]) + min[1]
 
     global ave_price_show, origin_price_data_show, predicted_price_show, image_name, imgLabel
-
+    ave_price_show = tk.StringVar()
+    origin_price_data_show = tk.StringVar()
+    predicted_price_show = tk.StringVar()
     ave_price_show.set('最新80笔交易的平均价格:'+str(ave_price))
     origin_price_data_show.set('当前最新价格:' + str(origin_price_data[-1]))
     predicted_price_show.set('预测的下一次交易的价格:' + str(predicted_price))
@@ -93,5 +95,4 @@ def GUI():
     imgLabel.pack()
     windows.mainloop()
 
-GUI()
 
